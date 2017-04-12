@@ -14,6 +14,7 @@ import {fetchWeather} from './weatherAPI';
 import Highlight from 'react-native-highlight-words'
 
 const iconNames = {
+  Default: 'ios-time',
   Clear: 'ios-sunny' ,
   Rain: 'ios-rainy' ,
   Thunderstorm: 'ios-thunderstorm' ,
@@ -23,29 +24,54 @@ const iconNames = {
 }
 
 const phrases = {
+  Default: {
+    title: "Fetching the Fucking Weather",
+    subtitle: "Be patient you're witnessing a miracle",
+    highlight: "Fucking",
+    color: "#636363",
+    background: "#9C9C9C"
+  },
   Clear: {
     title: "It's fucking Amaze Balls",
     subtitle: "Rock that Shit!",
+    highlight: "fucking",
+    color: "#E35200",
+    background: "#FFD017"
   },
   Rain: {
     title: "Rain rain go away",
     subtitle: "Stay inside and code all day",
+    highlight: "away",
+    color: "#004A96",
+    background: "#2F343A"
   },
   Thunderstorm:{
     title: "Fucking Thunderstrike",
     subtitle: "Unplug those devices",
+    highlight: "Thunderstrike",
+    color: "#FBFF46",
+    background: "#020202"
   },
   Clouds: {
     title: "Cloud storage limit reached",
     subtitle: "error: 500 - cirrocumuls",
+    highlight: "limit",
+    color: "#0044FF",
+    background: "#939393"
   },
   Snow: {
     title: "Brain Fucking Freeze",
     subtitle: "You're not suppose to eat it",
+    highlight: "Fucking",
+    color: "#021D4C",
+    background: "#15A678"
   },
   Drizzle: {
     title: "Meh... don't even ask",
-    subtitle: "What did I just say?"
+    subtitle: "What did I just say?",
+    highlight: "don't",
+    color: "#B3F6E4",
+    background: "#1FBB68"
   },
 }
 
@@ -54,7 +80,7 @@ class App extends Component {
 componentWillMount() {
   this.state = {
     temp: 0,
-    weather: 'clear',
+    weather: 'Default',
   }
 }
 
@@ -65,7 +91,7 @@ componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (posData) => fetchWeather(posData.coords.latitude,posData.coords.longitude)
       .then(res => this.setState({
-        temp: res.temp,
+        temp:Math.round(res.temp),
         weather: res.weather
       })),
       (error) => alert(error),
@@ -76,7 +102,7 @@ componentDidMount() {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container,{backgroundColor: phrases[this.state.weather].background}]}>
         <StatusBar hidden={true}/>
         <View style={styles.header}>
         <Icon name={iconNames[this.state.weather]} color={'white'} size={80}/>
@@ -85,12 +111,12 @@ componentDidMount() {
         <View style={styles.body}>
         <Highlight
         style={styles.title}
-        highlightStyle={{color: 'red'}}
-        searchWords={['random']}
-        textToHighlight={"Some Random Text"}
+        highlightStyle={{color: phrases[this.state.weather].color}}
+        searchWords={[phrases[this.state.weather].highlight]}
+        textToHighlight={phrases[this.state.weather].title}
         />
         <Text style={styles.subtitle}>
-          Let's Make it rain
+          {phrases[this.state.weather].subtitle}
         </Text>
         </View>
       </View>
