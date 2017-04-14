@@ -25,16 +25,16 @@ const iconNames = {
 
 const phrases = {
   Default: {
-    title: "Fetching the Fucking Weather",
+    title: "Fetching the Weather",
     subtitle: "Be patient you're witnessing a miracle",
-    highlight: "Fucking",
+    highlight: "the",
     color: "#636363",
     background: "#9C9C9C"
   },
   Clear: {
-    title: "It's fucking Amaze Balls",
+    title: "It's Amazing",
     subtitle: "Rock that Shit!",
-    highlight: "fucking",
+    highlight: "Amazing",
     color: "#E35200",
     background: "#FFD017"
   },
@@ -46,7 +46,7 @@ const phrases = {
     background: "#2F343A"
   },
   Thunderstorm:{
-    title: "Fucking Thunderstrike",
+    title: "Thunderstrike",
     subtitle: "Unplug those devices",
     highlight: "Thunderstrike",
     color: "#FBFF46",
@@ -60,9 +60,9 @@ const phrases = {
     background: "#939393"
   },
   Snow: {
-    title: "Brain Fucking Freeze",
+    title: "Brain Freeze",
     subtitle: "You're not suppose to eat it",
-    highlight: "Fucking",
+    highlight: "Brain",
     color: "#021D4C",
     background: "#15A678"
   },
